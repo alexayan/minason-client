@@ -25,6 +25,10 @@ npm run build
 
 使用微信小程序开发工具，选择 `dist` 目录进行预览
 
+## Demo
+
+![demo](demo.gif)
+
 ## Reference
 
 [Minason server](https://github.com/alexayan/minason-server)
