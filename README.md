@@ -27,6 +27,8 @@ npm run build
 
 ## Demo
 
+[匿名聊天](https://github.com/alexayan/minason-server/example)
+
 ![demo](demo.gif)
 
 ## Reference
