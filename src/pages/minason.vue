@@ -97,14 +97,17 @@ export default class Index extends wepy.page {
 
   onLoad(options) {
     this.minason && this.minason.destory();
-    options = this.options || options;
-    this.options = options;
+    const service = this.$parent.globalData.service;
+    if (!service) {
+      return wx.navigateBack();
+    }
     wx.setNavigationBarTitle({
-      title: decodeURIComponent(options.name)
+      title: decodeURIComponent(service.name)
     })
     this.loaded = false;
+    console.log('on load', service)
     const minason = new Minason({
-      url: decodeURIComponent(options.id)
+      url: decodeURIComponent(service.id)
     });
     minason.on('open', async () => {
       this.minason.remote('init')({

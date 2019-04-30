@@ -21,6 +21,7 @@ class Minason extends EventEmitter {
     super();
     this.config = _.assign({}, defaultConfig, config);
     this.state = -1;
+    console.log('new minason', config);
   }
 
   start() {

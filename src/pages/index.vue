@@ -90,8 +90,10 @@ export default class Index extends wepy.page {
 
   methods = {
     goToService(service) {
+      console.log('go to service', service);
+      this.$parent.globalData.service = service;
       wx.navigateTo({
-        url: `/pages/minason?id=${encodeURIComponent(service.id)}&name=${encodeURIComponent(service.name)}`
+        url: `/pages/minason`
       })
     }
   };
