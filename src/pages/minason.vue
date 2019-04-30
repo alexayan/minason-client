@@ -112,6 +112,12 @@ export default class Index extends wepy.page {
     minason.on('open', async () => {
       this.minason.remote('init')({
       });
+      minason.on('close', () => {
+        wx.showToast({
+          title: '已断开连接',
+          icon: 'none'
+        })
+      });
     });
     minason.on('refresh', resp => {
       if (resp.type === 'full') {
