@@ -148,7 +148,7 @@ export default class Index extends wepy.page {
     wx.startLocalServiceDiscovery({
       serviceType: '_http._tcp',
       success: () => {
-        // this.services = [];
+        this.services = [];
         this.$apply();
         cb && cb();
       },

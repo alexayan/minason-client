@@ -5,7 +5,7 @@ import wepy from 'wepy';
 
 const defaultConfig = {
   ping: 10 * 1000 + 1000,
-  remoteTimeout: 15 * 1000
+  remoteTimeout: 150 * 1000
 };
 
 const PROTOCOL = {
