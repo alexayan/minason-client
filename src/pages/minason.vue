@@ -2,10 +2,11 @@
   @import "../components/wxParse/wxParse.wxss";
   .container{
     overflow-y: scroll;
+    min-height: 100%;
   }
 </style>
 <template>
-  <view class="container" bindtap="onTap">
+  <view class="container" bindtap="onTap" style="{{windowStyle}}">
     <import src="../components/wxParse/wxParse.wxml"/>
     <template is="wxParse" data="{{wxParseData: content.nodes}}"/>
   </view>
@@ -17,11 +18,14 @@ import Minason from '../libs/minason';
 import diffpatch from '../libs/diffpatch';
 const WxParse = require('../components/wxParse/wxParse.js');
 
+const systemInfo = wx.getSystemInfoSync();
+
 export default class Index extends wepy.page {
   config = {
   };
 
   data = {
+    windowStyle: `min-height: ${systemInfo.windowHeight}px;`
   };
 
   methods = {
@@ -85,14 +89,14 @@ export default class Index extends wepy.page {
   }
 
   onShow() {
-    if (this.loaded) {
-      this.onLoad();
-    }
+    // if (this.loaded) {
+    //   this.onLoad();
+    // }
   }
 
   onHide() {
-    this.minason && this.minason.destory();
-    this.minason = null;
+    // this.minason && this.minason.destory();
+    // this.minason = null;
   }
 
   onLoad(options) {
@@ -111,6 +115,7 @@ export default class Index extends wepy.page {
     });
     minason.on('open', async () => {
       this.minason.remote('init')({
+        systemInfo
       });
       minason.on('close', () => {
         wx.showToast({

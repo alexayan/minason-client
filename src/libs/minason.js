@@ -34,7 +34,11 @@ class Minason extends EventEmitter {
   }
 
   send(data) {
-    if (_.isObject(data)) {
+    if (_.get(data, 'data', null) instanceof ArrayBuffer) {
+      return this.socket.send({
+        data: data.data
+      });
+    } else if (_.isObject(data)) {
       data = JSON.stringify(data);
     } else {
       data = '' + data;
@@ -98,6 +102,7 @@ class Minason extends EventEmitter {
         });
       }
       const resp = await wepy[method].apply(null, _.get(data, 'data.args', []));
+      console.log('resp', resp)
       return this.send({
         id: data.id,
         type: PROTOCOL.REMOTE_SUCCESS_RESULT,
